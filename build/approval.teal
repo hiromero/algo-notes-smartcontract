@@ -1,0 +1,163 @@
+#pragma version 5
+txn ApplicationID
+int 0
+==
+bnz main_l21
+txn OnCompletion
+int DeleteApplication
+==
+bnz main_l20
+txn OnCompletion
+int UpdateApplication
+==
+bnz main_l19
+txn OnCompletion
+int OptIn
+==
+bnz main_l18
+txn OnCompletion
+int CloseOut
+==
+bnz main_l17
+txn OnCompletion
+int NoOp
+==
+bnz main_l7
+err
+main_l7:
+txna ApplicationArgs 0
+byte "Like"
+==
+bnz main_l16
+txna ApplicationArgs 0
+byte "Unlike"
+==
+bnz main_l15
+txna ApplicationArgs 0
+byte "Add"
+==
+bnz main_l14
+txna ApplicationArgs 0
+byte "Delete"
+==
+bnz main_l12
+err
+main_l12:
+callsub sub3
+main_l13:
+int 0
+return
+main_l14:
+callsub sub2
+b main_l13
+main_l15:
+callsub sub1
+b main_l13
+main_l16:
+callsub sub0
+b main_l13
+main_l17:
+int 0
+return
+main_l18:
+int 0
+byte "local_like"
+int 0
+app_local_put
+int 1
+return
+main_l19:
+int 0
+return
+main_l20:
+int 0
+return
+main_l21:
+byte "likes"
+int 0
+app_global_put
+int 1
+return
+sub0: // like
+byte "likes"
+app_global_get
+store 0
+int 0
+byte "local_like"
+app_local_get
+store 1
+load 1
+int 0
+==
+bnz sub0_l2
+int 0
+return
+sub0_l2:
+byte "likes"
+load 0
+int 1
++
+app_global_put
+int 0
+byte "local_like"
+load 1
+int 1
++
+app_local_put
+int 1
+return
+sub1: // unLike
+byte "likes"
+app_global_get
+store 0
+int 0
+byte "local_like"
+app_local_get
+store 1
+load 1
+int 1
+==
+bnz sub1_l2
+int 0
+return
+sub1_l2:
+byte "likes"
+load 0
+int 1
+-
+app_global_put
+int 0
+byte "local_like"
+load 1
+int 1
+-
+app_local_put
+int 1
+return
+sub2: // add_note
+int 0
+int 0
+app_opted_in
+assert
+txn Sender
+txna ApplicationArgs 1
+int 1
+app_local_put
+int 1
+return
+sub3: // delete_note
+int 0
+int 0
+app_opted_in
+txn Sender
+txna ApplicationArgs 1
+app_local_get
+int 1
+==
+&&
+assert
+txn Sender
+txna ApplicationArgs 1
+app_local_del
+int 1
+return
