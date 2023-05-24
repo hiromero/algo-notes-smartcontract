@@ -31,37 +31,13 @@ The contract uses 4 no_op and subroutines, These are add_note, delete_note, like
 - `214948461`
 - https://testnet.algoexplorer.io/application/214948461
 
-### Overview
-
-This is a simple game built with Algorand's Pyteal where a user plays as a warrior fighting a monster boss. This makes use of Pyteal's `global and local states` to store values that will be used in the game. The player's and the boss' stats are kept at default values at level 1. They both have `Health`, `Attack`, and `Defense`. Once the player defeats a boss, their level will be increased by 1. Every time a player increases levels, they can spend `twenty (20) points` to add to their stats, while the boss' stats increase steadily with the player's level.
-
-## How the Smart Contract works
-
-### Defining the States
-
-`Global states` were used to store the initial Boss Stats, this would be where the Boss' stats will be based off depending on the current level of the player as it increases based on player level. Each level increases the boss' `Health` by 30, `Defense` by 5, and `Attack Damage` by 5. Global states were also used to store the variables for the `linear congruential recurrence relation` to generate pseudo-random number for the critical chance.
-
-#### Global States
-
-- boss_health (int)
-- boss_attack (int)
-- boss_defense (int)
-- a (int)
-- x (int)
-- c (int)
-- m (int)
-
-`Local states` were used to store the player's stats. Once a player opts-in or later on upgrades their stats, those values will be added into their local states to ensure that the values are different from each user. The local states were also used to determine if they are currently in a battle, or if they are under upgrading their stats. The player's current level is also stored as a local state.
-
-Also since the boss stats are based on the player's level, these values are also stored as local states.
-
 ## Frontend
 
 Here's the [link](https://github.com/hiromero/algorand-notes) to the dApp's frontend repository.
 
 ## Demo
 
-Here is a `link TO BE UPDATED!!` that shows how the user interacted with the dApp.
+Here is a `video link TO BE UPDATED!!` that shows how the user interacted with the dApp.
 
 ![Alt text](demo%20img.PNG)
 
