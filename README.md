@@ -41,13 +41,13 @@ Here's the [link](https://github.com/hiromero/algorand-notes) to the dApp's fron
 
 ### Demo
 
-Here is a `video link TO BE UPDATED!!` that shows how the user interacted with the dApp.
+Here is a [VIDEO link](https://drive.google.com/file/d/1-v7ZndwT5iwr_ixYLcyHV_xlJH3mAH0t/view?usp=sharing) that shows how the user interacted with the dApp.
 
 ![Alt text](demo%20img.PNG)
 
 To test it out, click on this [demo link](https://algorand-notes.vercel.app/) uploaded in Vercel
 
-### User Key Functions and Flows
+### User Key Functions and Flow
 
 1. Access the DApp through this [ link](https://algorand-notes.vercel.app/)
 2. Click `Connect to Pera Wallet` then pick your preferred choice on connecting your PeraWallet
